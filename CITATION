@@ -1,0 +1,11 @@
+citHeader("To cite the RCTC package in publications use:")
+citEntry(entry = "Article", 
+    author = personList(as.person("Pengfei Wang"), 
+        as.person("Jonathan P. Stewart"),
+as.person("Yousef Bozorgnia"),
+as.person("David M. Boore"),as.person("Tadahiro Kishida")), title = "User's Manual of R Code for Rotated Combination of Two-Component Ground Motions", 
+    journal = "PEER report", year = 2017,  
+    textVersion = paste("Wang, P., Stewart, J. P., Bozorgnia, Y., Boore, D. M., and Kishida T. (2017)", 
+        "User's Manual of R Code for Rotated Combination of Two-Component Ground Motions.", 
+        "Pacific Earthquake Engineering Research Center (PEER)"))
+citFooter("As ouch is continually evolving, you may want to cite its version number. Find it with 'help(package=ouch)'.")
