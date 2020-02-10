@@ -10,7 +10,7 @@ For the details, please refer to the PEER report at the link: https://peer.berke
 
 2, For Mac users: you may need to download Xcode for command line tools or (by running the following command in Terminal):
 
-		xcode-select --install
+	xcode-select --install
    For Windows users: you may need to download and install Rtools from the following link (note remember to add path into the system environment path when installing):
    
         https://cran.r- project.org/bin/windows/Rtools/
