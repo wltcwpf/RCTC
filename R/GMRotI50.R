@@ -16,14 +16,18 @@
 
 GMRotI50_cal <- function(GMRotD, period_t, tmax=10, tmin=0){
   # find the index for tmax and tmin
-  for(i in seq(1, length(period_t))){
-    if(period_t[i] == tmax){
-      tmax_index <- i
-      break
-    }
-    if(period_t[i] > tmax){
-      tmax_index <- i -1
-      break
+  if(tmax > max(period_t)){
+    tmax_index <- length(period_t)
+  }else{
+    for(i in seq(1, length(period_t))){
+      if(period_t[i] == tmax){
+        tmax_index <- i
+        break
+      }
+      if(period_t[i] > tmax){
+        tmax_index <- i -1
+        break
+      }
     }
   }
   for(i in seq(length(period_t), 1)){
