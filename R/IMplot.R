@@ -98,15 +98,19 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
     if(f_highest != -999){
       tmin4penalty <- 1/f_highest
     }
-    for(i in seq(1, length(period_t))){
-      if(period_t[i] == tmax4penalty){
-        tmax_index <- i
-        break
-      }
-      if(period_t[i] > tmax4penalty){
-        tmax_index <- i -1
-        tmax4penalty <- period_t[tmax_index]
-        break
+    if(max(period_t) < tmax4penalty){
+      tmax_index <- length(period_t)
+    }else{
+      for(i in seq(1, length(period_t))){
+        if(period_t[i] == tmax4penalty){
+          tmax_index <- i
+          break
+        }
+        if(period_t[i] > tmax4penalty){
+          tmax_index <- i -1
+          tmax4penalty <- period_t[tmax_index]
+          break
+        }
       }
     }
     for(i in seq(length(period_t), 1)){
@@ -224,6 +228,9 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
         }else{
           interp_factor <- Interpolation_factor
         }
+        # dt <- dt1  # original time step
+        # data1_1 <- data1
+        # data2_1 <- data2
         dt1 <- dt1/interp_factor # compute new time step
         dt2 <- dt2/interp_factor
         data1 <- Interpft(data1, interp_factor) # new data after Sinc interpolation
