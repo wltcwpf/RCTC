@@ -4,6 +4,9 @@
 #' @param file_path A directory specifies the location of the SMC format files,
 #' @param n_comp A number, can be 3 or 1. 3 indicates the SMC file contains all three components together,
 #' while 1 indicates the SMC file only contains one component
+#' @return A list is returned which includes the time step and acceleration time series
+#' @keywords read_cosmosV2
+#' @export
 
 read_cosmosV2 <- function( file_path, n_comp = 3 ){
 

@@ -12,6 +12,10 @@ read_cosmosV2(file_path, n_comp = 3)
 \item{n_comp}{A number, can be 3 or 1. 3 indicates the SMC file contains all three components together,
 while 1 indicates the SMC file only contains one component}
 }
+\value{
+A list is returned which includes the time step and acceleration time series
+}
 \description{
 This function reads SMC format corrected data and output a list with time step and acceleration.
 }
+\keyword{read_cosmosV2}
