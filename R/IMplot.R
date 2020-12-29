@@ -1292,9 +1292,9 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
       }
       data1 <- data1[1:npts1]
 
-      line2 <- readLines(temp[i], n = len_h1 + ceiling(npts1/8)+46)
+      line2 <- readLines(temp[i], n = len_h1 + ceiling(npts2/8)+46)
       data2 <- c()
-      for(k in seq(len_h1 + 47, len_h1+ceiling(npts1/8)+46)){
+      for(k in seq(len_h1 + 47, len_h1+ceiling(npts2/8)+46)){
         if(length(data2) == 0){
           data2 <- as.numeric(substring(line2[k], c(1,11,21,31,41,51,61,71),c(10,20,30,40,50,60,70,80)))
         } else{
