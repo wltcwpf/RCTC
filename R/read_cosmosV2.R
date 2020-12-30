@@ -34,7 +34,7 @@ read_cosmosV2 <- function( file_path, n_comp = 3 ){
 
     head_sta <- scan( file_path, sep = "", skip = 5, nlines = 1, what = character() )
 
-    head_sta <- head_cha[ 3 ]
+    head_sta <- head_sta[ 3 ]
 
     Idx <- gregexpr( head_sta, head_cha )
 
