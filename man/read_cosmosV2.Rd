@@ -13,9 +13,11 @@ read_cosmosV2(file_path, n_comp = 3)
 while 1 indicates the SMC file only contains one component}
 }
 \value{
-A list is returned which includes the time step and acceleration time series
+A list is returned which includes the date time, network, station, channel, time step, and
+acceleration time series of the record
 }
 \description{
-This function reads SMC format corrected data and output a list with time step and acceleration.
+This function reads SMC format corrected data and output a list of date time
+network, station, channel, time step, and acceleration of the record.
 }
 \keyword{read_cosmosV2}
