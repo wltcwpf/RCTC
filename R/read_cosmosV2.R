@@ -38,12 +38,13 @@ read_cosmosV2 <- function( file_path, n_comp = 3 ){
 
     Idx <- gregexpr( head_sta, head_cha )
 
-    netsta <- paste0( substr( head_cha, Idx[[ 1 ]][ 1 ] - 3, Idx[[ 1 ]][ 1 ] - 1 ),
-                      substr( head_cha, Idx[[ 1 ]][ 1 ], Idx[[ 1 ]][ 1 ] + nchar( head_sta ) - 1 ), sep = '_' )
+    netsta <- paste0( c( substr( head_cha, Idx[[ 1 ]][ 1 ] - 3, Idx[[ 1 ]][ 1 ] - 2 ),
+                      substr( head_cha, Idx[[ 1 ]][ 1 ], Idx[[ 1 ]][ 1 ] + nchar( head_sta ) - 1 ) ),
+                      collapse = '_' )
 
-    nsch <- c( paste0( netsta, paste0( sensor, 'E', sep = '' ), sep = '_' ),
-               paste0( netsta, paste0( sensor, 'N', sep = '' ), sep = '_' ),
-               paste0( netsta, paste0( sensor, 'Z', sep = '' ), sep = '_' ) )
+    nsch <- c( paste0( c( netsta, paste0( sensor, 'E', sep = '' ) ), collapse = '_' ),
+               paste0( c( netsta, paste0( sensor, 'N', sep = '' ) ), collapse = '_' ),
+               paste0( c( netsta, paste0( sensor, 'Z', sep = '' ) ), collapse = '_' ) )
 
     head_dt1 <- scan( file_path, sep = "", skip = 45, nlines = 1, what = character() )
 
