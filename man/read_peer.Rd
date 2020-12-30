@@ -11,10 +11,10 @@ read_peer(file_path)
 }
 \value{
 A list is returned which includes the date, station code, channel code,
-time step, and acceleration time series of the record
+time step, and acceleration time series (in the unit of g) of the record
 }
 \description{
 This function reads PEER format corrected data and output a list of date, station code, channel code,
-time step, and acceleration of the record.
+time step, and acceleration (in the unit of g) of the record.
 }
 \keyword{read_peer}

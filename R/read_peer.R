@@ -1,10 +1,10 @@
 #' A Function to Read PEER (corrected) files
 #'
 #' This function reads PEER format corrected data and output a list of date, station code, channel code,
-#' time step, and acceleration of the record.
+#' time step, and acceleration (in the unit of g) of the record.
 #' @param file_path A directory specifies the location of the PEER format files,
 #' @return A list is returned which includes the date, station code, channel code,
-#' time step, and acceleration time series of the record
+#' time step, and acceleration time series (in the unit of g) of the record
 #' @keywords read_peer
 #' @export
 

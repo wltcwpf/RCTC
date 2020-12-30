@@ -1,12 +1,12 @@
 #' A Function to Read COSMOS V2 (corrected) files
 #'
 #' This function reads SMC format corrected data and output a list of date time
-#' network, station, channel, time step, and acceleration of the record.
+#' network, station, channel, time step, and acceleration (in the unit of cm/sec2) of the record.
 #' @param file_path A directory specifies the location of the SMC format files,
 #' @param n_comp A number, can be 3 or 1. 3 indicates the SMC file contains all three components together,
 #' while 1 indicates the SMC file only contains one component
 #' @return A list is returned which includes the date time, network, station, channel, time step, and
-#' acceleration time series of the record
+#' acceleration time series (in the unit of cm/sec2) of the record
 #' @keywords read_cosmosV2
 #' @export
 
