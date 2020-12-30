@@ -36,11 +36,18 @@ read_cosmosV2 <- function( file_path, n_comp = 3 ){
 
     head_sta <- head_sta[ 3 ]
 
-    Idx <- gregexpr( head_sta, head_cha )
+    if( is.na( as.numeric( head_sta ) ) ){
 
-    netsta <- paste0( c( substr( head_cha, Idx[[ 1 ]][ 1 ] - 3, Idx[[ 1 ]][ 1 ] - 2 ),
-                      substr( head_cha, Idx[[ 1 ]][ 1 ], Idx[[ 1 ]][ 1 ] + nchar( head_sta ) - 1 ) ),
-                      collapse = '_' )
+      Idx <- gregexpr( head_sta, head_cha )
+
+      netsta <- paste0( c( substr( head_cha, Idx[[ 1 ]][ 1 ] - 3, Idx[[ 1 ]][ 1 ] - 2 ),
+                           substr( head_cha, Idx[[ 1 ]][ 1 ], Idx[[ 1 ]][ 1 ] + nchar( head_sta ) - 1 ) ),
+                        collapse = '_' )
+    }else{
+
+      netsta <- paste0( 'CE', '_', head_sta )
+
+    }
 
     nsch <- c( paste0( c( netsta, paste0( sensor, 'E', sep = '' ) ), collapse = '_' ),
                paste0( c( netsta, paste0( sensor, 'N', sep = '' ) ), collapse = '_' ),
