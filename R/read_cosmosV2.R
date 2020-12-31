@@ -175,6 +175,18 @@ read_cosmosV2 <- function( file_path, n_comp = 3 ){
 
   }else if( n_comp == 1 ){
 
+    n_comment1 <- scan( file_path, sep = "", skip = 13, nlines = 1, what = character() )
+
+    n_comment1 <- as.numeric( n_comment1[ 6 ] )
+
+    n_comment2 <- scan( file_path, sep = "", skip = 14 + n_comment1, nlines = 1, what = character() )
+
+    n_comment2 <- as.numeric( n_comment2[ 6 ] )
+
+    n_comment3 <- scan( file_path, sep = "", skip = 14 + n_comment1 + 1 + n_comment2, nlines = 1, what = character() )
+
+    n_comment3 <- as.numeric( n_comment2[ 1 ] )
+
     head_time <- scan( file_path, sep = "", skip = 7, nlines = 1, what = character() )
 
     ymd <- gsub( '/', '', head_time[ 4 ] )
@@ -183,17 +195,17 @@ read_cosmosV2 <- function( file_path, n_comp = 3 ){
 
     hms <- paste0( c( hms[ 1:2 ], round( as.numeric( hms[ 3 ] ) ) ), collapse = '' )
 
-    head_netstacha <- scan( file_path, sep = "", skip = 48, nlines = 1, what = character() )
+    head_netstacha <- scan( file_path, sep = "", skip = 14 + n_comment1 + 1 + n_comment2 + 3, nlines = 1, what = character() )
 
     nsch <- gsub( '[|]<SCNL>', '', head_netstacha[ 1 ] )
 
     nsch <- paste0( strsplit( nsch, split = '[.]' )[[ 1 ]][ c( 3, 1, 2 ) ], collapse = '_' )
 
-    head_pt <- scan( file_path, sep = "", skip = 54, nlines = 1, what = character() )
+    head_pt <- scan( file_path, sep = "", skip = 14 + n_comment1 + 1 + n_comment2 + 1 + n_comment3, nlines = 1, what = character() )
 
     npts <- as.numeric( head_pt[ 1 ] )
 
-    head_dt <- scan( file_path, sep = "", skip = 50, nlines = 1, what = character() )
+    head_dt <- scan( file_path, sep = "", skip = 14 + n_comment1 + 1 + n_comment2 + 1 + 4, nlines = 1, what = character() )
 
     num_ind <- which( !is.na( as.numeric( head_dt ) ) )
 
@@ -201,7 +213,7 @@ read_cosmosV2 <- function( file_path, n_comp = 3 ){
 
     if( dt > 1 ) dt <- 1 / dt
 
-    data <- scan( file_path, sep = "", skip = 55, nlines = npts, what = numeric() )
+    data <- scan( file_path, sep = "", skip = 14 + n_comment1 + 1 + n_comment2 + 1 + n_comment3 + 1, nlines = npts, what = numeric() )
 
     res <- list()
 
