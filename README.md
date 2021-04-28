@@ -14,7 +14,7 @@ For the details, please refer to the PEER report at the link: https://peer.berke
 	
    For Windows users: you may need to download and install Rtools from the following link (note remember to add path into the system environment path when installing):
    
-        https://cran.r- project.org/bin/windows/Rtools/
+        https://cran.r-project.org/bin/windows/Rtools/
 
 3, install "devtools":
 
