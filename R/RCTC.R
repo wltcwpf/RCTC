@@ -12,6 +12,8 @@
 #' \code{GM_RotD_cal, GMRotI50_cal, IMplot, Interpft, nametransfer,
 #' PS_cal_cpp, read_cosmosV2, read_peer, subset_select}
 #'
+#' Of which \code{IMplot} is the main function.
+#'
 #' @examples
 #' ## Not run:
 #' ##   See examples in the help files for all functions.
