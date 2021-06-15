@@ -1,0 +1,22 @@
+#' Rotated Combination of Two-Component Ground Motions Package
+#'
+#' The package was developed for Rotated Combination of Two-Component (RCTC) Ground Motions calculation.
+#' please see \link{https://peer.berkeley.edu/sites/default/files/2017_09_stewart_9.10.18.pdf} for detail.
+#'
+#' @docType package
+#'
+#' @name RCTC-package
+#' @aliases RCTC RCTC-package
+#'
+#' @note There are 9 RCTC main functions:
+#' \code{GM_RotD_cal, GMRotI50_cal, IMplot, Interpft, nametransfer,
+#' PS_cal_cpp, read_cosmosV2, read_peer, subset_select}
+#'
+#' @examples
+#' ## Not run:
+#' ##   See examples in the help files for all functions.
+#' ## End(Not run)
+#'
+#' @author Pengfei Wang
+NULL
+#> NULL
