@@ -1,15 +1,20 @@
 Package: RCTC
 Type: Package
 Title: The Rotated Combination of Two-Component Ground Motions
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: person("Pengfei", "Wang", email = "wltcwpf@gmail.com", role = c("aut", "cre"))
 URL: https://github.com/wltcwpf/RCTC
 BugReports: https://github.com/wltcwpf/RCTC/issues
-Description: The Rotated Combination of Two-Component Ground Motions and their related functions
+Description: This package initially aimed at calculating the Rotated Combination of Two-Component Ground Motions (e.g., RotD50 for PSA at different oscillator periods). Now the package has been expanded to include other commonly used intensity measure metrics (e.g., IA, CAV, and EAS, etc.) 
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports: Rcpp,
     stats,
     pracma
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 LinkingTo: Rcpp
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

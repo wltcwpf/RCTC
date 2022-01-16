@@ -19,7 +19,4 @@ The interpolated time series of \code{data} by factor \code{interpolation_factor
 This function applies Sinc interpolation to reduce the time step and
 returns a time series with more data points than in \code{data}
 }
-\examples{
-Interpft(c(0.01,0.03,...0.5), 64)
-}
 \keyword{internal}

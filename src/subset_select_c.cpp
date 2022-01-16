@@ -21,8 +21,6 @@ using namespace Rcpp;
 //' @return \code{subset_select} returns two subsets of \code{data1} and \code{data2}, or a threshold value.
 //' It depends on \code{type_return}.
 //' @export
-//' @examples
-//' subset_select(c(0.01,0.03,...0.5), c(-0.01,0.02,...0.05), 0.7, 2500, 0.005, 1)
 // [[Rcpp::export]]
 
 

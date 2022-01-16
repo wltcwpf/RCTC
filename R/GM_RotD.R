@@ -1,8 +1,8 @@
 #' A Function for Combination of Two Rotated Ground Motions
 #'
 #' This function computes RotD with 180 rotated angles and Geometric Mean of RotD with 90 angles
-#' @param data1 The first horizontal component of ground motion
-#' @param data2 The second horizontal component of ground motion
+#' @param data1 The first horizontal component of acceleration ground motion, in g
+#' @param data2 The second horizontal component of acceleration ground motion, in g
 #' @param period_t A array of oscillator periods
 #' @param damping Damping ratio
 #' @param time_dt Time step of two time series. These two datasets have the same time step
@@ -12,18 +12,45 @@
 #' @param Interpolation_factor The specific value depends on sampling rate, the detailed explanation is
 #' described in the PEER report. Users can give their desired value, or can use defult "auto", which
 #' will compute \code{Interpolation_factor} according to time step automatically.
-#' @return A list is returned with RotD, GMRotD, number of selected subsets points, threshold values, PGARotD, PGVRotD, and PGDRotD
+#' @return A list is returned with RotD, GMRotD, number of selected subsets points, threshold values, PGARotD (in g), PGVRotD (in cm/s), and PGDRotD (in cm)
 #' @keywords GM_RotD_cal
+#' @importFrom pracma cumtrapz
 #' @export
-#' @examples
-#' GM_RotD_cal(c(0.01,0.03,...0.5), c(-0.01,0.02,...0.05), c(0.01,0.02,...10), 0.05, 0.005, 0.7)
-
-########################################
-######## inputs: time series, interpolation multiplier
-######## outputs: Sinc interpolated time series
-
-
 GM_RotD_cal <- function(data1, data2, period_t, damping, time_dt, fraction = 0.7, Interpolation_factor = "auto"){
+
+  ### Compute for PGA, PGV, PGD
+  vel_1 <- pracma::cumtrapz(time_dt*seq(1,length(data1)),data1) * 981 # unit, cm/s
+  vel_2 <- pracma::cumtrapz(time_dt*seq(1,length(data2)),data2) * 981 # unit, cm/s
+  disp_1 <- pracma::cumtrapz(time_dt*seq(1,length(vel_1)),vel_1) # unit, cm
+  disp_2 <- pracma::cumtrapz(time_dt*seq(1,length(vel_2)),vel_2) # unit, cm
+  pga_rot <- rep(0, 180)
+  pga_gmrot <- rep(0, 90)
+  pgv_rot <- rep(0, 180)
+  pgv_gmrot <- rep(0, 90)
+  pgd_rot <- rep(0, 180)
+  pgd_gmrot <- rep(0, 90)
+  for(theta in seq(1,90)){
+    # acceleration
+    Rot_a1 <- data1*cos(theta/180*pi) + data2*sin(theta/180*pi)
+    Rot_a2 <- -data1*sin(theta/180*pi) + data2*cos(theta/180*pi)
+    pga_rot[theta] <- max(abs(Rot_a1))
+    pga_rot[theta+90] <- max(abs(Rot_a2))
+    pga_gmrot[theta] <- sqrt(max(abs(Rot_a1))*max(abs(Rot_a2)))
+    # velocity
+    Rot_v1 <- vel_1*cos(theta/180*pi) + vel_2*sin(theta/180*pi)
+    Rot_v2 <- -vel_1*sin(theta/180*pi) + vel_2*cos(theta/180*pi)
+    pgv_rot[theta] <- max(abs(Rot_v1))
+    pgv_rot[theta+90] <- max(abs(Rot_v2))
+    pgv_gmrot[theta] <- sqrt(max(abs(Rot_v1))*max(abs(Rot_v2)))
+    # displacement
+    Rot_d1 <- disp_1*cos(theta/180*pi) + disp_2*sin(theta/180*pi)
+    Rot_d2 <- -disp_1*sin(theta/180*pi) + disp_2*cos(theta/180*pi)
+    pgd_rot[theta] <- max(abs(Rot_d1))
+    pgd_rot[theta+90] <- max(abs(Rot_d2))
+    pgd_gmrot[theta] <- sqrt(max(abs(Rot_d1))*max(abs(Rot_d2)))
+  }
+
+  ### Compute for PSA
   ## Sinc interpolation
   if(Interpolation_factor == 'auto'){
     # interp_factor <- ceiling(log(time_dt/0.001)/log(2))
@@ -48,36 +75,10 @@ GM_RotD_cal <- function(data1, data2, period_t, damping, time_dt, fraction = 0.7
   number <- min(length(data1), length(data2)) # if two data sizes diff, we set both size as the smaller
   data1 <- data1[1:number]
   data2 <- data2[1:number]
-  vel_1 <- cumtrapz(time_dt*seq(1,length(data1)),data1) * 981 # unit, cm/s
-  vel_2 <- cumtrapz(time_dt*seq(1,length(data2)),data2) * 981 # unit, cm/s
-  disp_1 <- cumtrapz(time_dt*seq(1,length(vel_1)),vel_1) # unit, cm
-  disp_2 <- cumtrapz(time_dt*seq(1,length(vel_2)),vel_2) # unit, cm
-  ### subset slection
-  length_min <- min(length(data1), length(data2))
-  a_subset <- subset_select(data1, data2, fraction, length_min, time_dt, 1)
-  v_subset <- subset_select(vel_1, vel_2, fraction, length_min, time_dt, 1)
-  d_subset <- subset_select(disp_1, disp_2, fraction, length_min, time_dt, 1)
-  ### Compute for RotD of PGA, PGV, PGD
-  pga_rot <- c()
-  pgv_rot <- c()
-  pgd_rot <- c()
-  for(theta in seq(1,90)){
-    # acceleration
-    Rot_a1 <- a_subset[1,]*cos(theta/180*pi) + a_subset[2,]*sin(theta/180*pi)
-    Rot_a2 <- -a_subset[1,]*sin(theta/180*pi) + a_subset[2,]*cos(theta/180*pi)
-    pga_rot[theta] <- max(abs(Rot_a1))
-    pga_rot[theta+90] <- max(abs(Rot_a2))
-    # velocity
-    Rot_v1 <- v_subset[1,]*cos(theta/180*pi) + v_subset[2,]*sin(theta/180*pi)
-    Rot_v2 <- -v_subset[1,]*sin(theta/180*pi) + v_subset[2,]*cos(theta/180*pi)
-    pgv_rot[theta] <- max(abs(Rot_v1))
-    pgv_rot[theta+90] <- max(abs(Rot_v2))
-    # displacement
-    Rot_d1 <- d_subset[1,]*cos(theta/180*pi) + d_subset[2,]*sin(theta/180*pi)
-    Rot_d2 <- -d_subset[1,]*sin(theta/180*pi) + d_subset[2,]*cos(theta/180*pi)
-    pgd_rot[theta] <- max(abs(Rot_d1))
-    pgd_rot[theta+90] <- max(abs(Rot_d2))
-  }
+  vel_1 <- pracma::cumtrapz(time_dt*seq(1,length(data1)),data1) * 981 # unit, cm/s
+  vel_2 <- pracma::cumtrapz(time_dt*seq(1,length(data2)),data2) * 981 # unit, cm/s
+  disp_1 <- pracma::cumtrapz(time_dt*seq(1,length(vel_1)),vel_1) # unit, cm
+  disp_2 <- pracma::cumtrapz(time_dt*seq(1,length(vel_2)),vel_2) # unit, cm
 
   # row is period sequence for a given rotated angle, colomn is angle sequence for a given period
   GMRotD <- matrix(nrow = length(seq(1,90)), ncol = length(period_t))
@@ -114,5 +115,8 @@ GM_RotD_cal <- function(data1, data2, period_t, damping, time_dt, fraction = 0.7
   gm$pga_rot <- pga_rot
   gm$pgv_rot <- pgv_rot
   gm$pgd_rot <- pgd_rot
+  gm$pga_gmrot <- pga_gmrot
+  gm$pgv_gmrot <- pgv_gmrot
+  gm$pgd_gmrot <- pgd_gmrot
   return(gm)
 }

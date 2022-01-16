@@ -2,7 +2,7 @@
 % Please edit documentation in R/IMplot.R
 \name{IMplot}
 \alias{IMplot}
-\title{A Function for Intensity Measures Calculation and Plots}
+\title{A function to calculate a suite of intensity measures and generate plots}
 \usage{
 IMplot(
   inputpath = "/Users/PFW/Desktop/test/Inputdata",
@@ -72,8 +72,8 @@ It generates two csv files and plots for each input station recordings. Two fold
 \code{inputpath} directory, one is for "Outputdata" and another is for "Outputplot"
 }
 \description{
-This is the main function to compute response spectra and generate spreadsheets and plots.
-The function computes RotD00, RotD50, RotD100, GMRotI50, and other related period independent
-variables. The outputs will be two cvs files and plots for each station. A summary csv file is also generated.
+This is a comprehensive function that computes response spectra and generates spreadsheets and plots.
+The function computes PSA of RotD00, RotD50, RotD100, GMRotI50, and other periods independent
+variables (e.g., PGA, PGV, PGD, etc.). The outputs will be two cvs files and plots for each station. A summary csv file is also generated.
 }
 \keyword{IMplot}

@@ -31,6 +31,3 @@ It depends on \code{type_return}.
 \description{
 Select subsets of two components of ground motions.
 }
-\examples{
-subset_select(c(0.01,0.03,...0.5), c(-0.01,0.02,...0.05), 0.7, 2500, 0.005, 1)
-}

@@ -12,6 +12,7 @@
 #' @return A list is returned with GMRotI50, GMRotI50_ang, penalty, the index of tmax in \code{period_t}
 #' and the index of tmin in \code{period_t}
 #' @keywords GMRotI50_cal
+#' @importFrom stats median
 #' @export
 
 GMRotI50_cal <- function(GMRotD, period_t, tmax=10, tmin=0){
@@ -51,7 +52,7 @@ GMRotI50_cal <- function(GMRotD, period_t, tmax=10, tmin=0){
   for (theta in seq(1,90)){
     GM_ratio <- 0
     for (per_index in seq(tmin_index, tmax_index)){
-      GM_ratio <- GM_ratio+(GMRotD[theta, per_index]/median(GMRotD[,per_index])-1)^2
+      GM_ratio <- GM_ratio+(GMRotD[theta, per_index]/stats::median(GMRotD[,per_index])-1)^2
     }
     penalty[theta] <- GM_ratio/(tmax_index-tmin_index+1)
   }

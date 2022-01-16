@@ -22,7 +22,8 @@ knitr::opts_chunk$set(
 [![Open Source? Yes!](https://img.shields.io/badge/Open%20Source-Yes-green.svg)](https://github.com/wltcwpf/RCTC)
 <!-- badges: end -->
 
-The package was developed for Rotated Combination of Two-Component (RCTC) Ground Motions calculation. For the details, please refer to the [PEER report](https://peer.berkeley.edu/sites/default/files/2017_09_stewart_9.10.18.pdf)
+The package was initially developed for Rotated Combination of Two-Component (RCTC) Ground Motions calculation. Please refer to the [PEER report](https://peer.berkeley.edu/sites/default/files/2017_09_stewart_9.10.18.pdf) for some detail. Now the package has been expanded to include a few more widely used intensity measures, which are Arias Intensity and significant duration, 
+(standardized) Cumulative Absolute Velocity (CAV), and (effective) Fourier Amplitude Spectra (FAS / EAS).
 
 ## Installation
 
@@ -54,10 +55,13 @@ library(devtools)
 install_github('wltcwpf/RCTC')
 ```
 
-## Citation
+## Citations
 If you use RCTC (directly or as a dependency of another package) for work resulting in an academic publication, we would appreciate if the report is cited:
 ```
 Wang, P., Stewart, J. P., Bozorgina, Y., Boore, D. M., Kishida, T. (2017). “R” Package for Computation of Earthquake Ground Motion Response Spectra. Report No. 2017/09. PEER, UC Berkeley.
+```
+```
+Wang, P. (2022). wltcwpf/RCTC: Second version (v.0.2.0). Zenodo. https://doi.org/10.5281/zenodo.5857014
 ```
 
 ## Usage 

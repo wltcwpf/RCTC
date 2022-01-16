@@ -7,7 +7,7 @@
 \title{Rotated Combination of Two-Component Ground Motions Package}
 \description{
 The package was developed for Rotated Combination of Two-Component (RCTC) Ground Motions calculation.
-please see \link{https://peer.berkeley.edu/sites/default/files/2017_09_stewart_9.10.18.pdf} for detail.
+please see \url{https://peer.berkeley.edu/sites/default/files/2017_09_stewart_9.10.18.pdf} for detail.
 }
 \note{
 There are 9 RCTC main functions:

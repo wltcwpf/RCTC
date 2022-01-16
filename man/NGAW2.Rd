@@ -4,7 +4,8 @@
 \name{NGAW2}
 \alias{NGAW2}
 \title{Database from NGA-West2 Flatfile}
-\format{A data frame with 21540 rows and 12 variables
+\format{
+A data frame with 21540 rows and 12 variables
 \describe{
   \item{Record.Sequence.Number}{record sequence number, identifies a specfic recording}
   \item{EQID}{earthquake ID, identifies a specific earthquake event}
@@ -18,7 +19,8 @@
   \item{File.Name..Horizontal.2.}{the file name for the second horziontal component of ground motion in NGA-West2 database}
   \item{H1.azimth..degrees.}{the azimuth degree of the first horizontal component of ground motion}
   \item{H2.azimth..degrees.}{the azimuth degree of the second horizontal component of ground motion}
-}}
+}
+}
 \source{
 \url{http://peer.berkeley.edu/ngawest2/databases/}
 }

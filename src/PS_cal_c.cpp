@@ -13,12 +13,10 @@ using namespace Rcpp;
 //' @param time_dt Time step, in sec
 //' @param type_return A dummy variable controlling output type, set to either 1 or 2.
 //' If 1 is selected, it returns a two-row matrix with actual spectral acceleration
-//' in the first row and PSA in the second row. If 2 is selected,
+//' in the first row and PSA in the second row at each of the specified periods in \code{period_t}. If 2 is selected,
 //' it returns a row vector of spectral displacements
 //' @return The response acceleration and PSA, or spectral displacement. It depends on \code{type_return}.
 //' @export
-//' @examples
-//' PS_cal_cpp(c(0.01,0.03,...0.5), c(0.01,0.02,...10), 0.05, 0.005, 1)
 // [[Rcpp::export]]
 
 Rcpp::NumericMatrix PS_cal_cpp(Rcpp::NumericVector data, Rcpp::NumericVector period_t, double damping, double time_dt, int type_return){
@@ -77,3 +75,5 @@ Rcpp::NumericMatrix PS_cal_cpp(Rcpp::NumericVector data, Rcpp::NumericVector per
     return PS_disp;
   }
 }
+
+

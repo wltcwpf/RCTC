@@ -15,9 +15,9 @@ GM_RotD_cal(
 )
 }
 \arguments{
-\item{data1}{The first horizontal component of ground motion}
+\item{data1}{The first horizontal component of acceleration ground motion, in g}
 
-\item{data2}{The second horizontal component of ground motion}
+\item{data2}{The second horizontal component of acceleration ground motion, in g}
 
 \item{period_t}{A array of oscillator periods}
 
@@ -34,12 +34,9 @@ described in the PEER report. Users can give their desired value, or can use def
 will compute \code{Interpolation_factor} according to time step automatically.}
 }
 \value{
-A list is returned with RotD, GMRotD, number of selected subsets points, threshold values, PGARotD, PGVRotD, and PGDRotD
+A list is returned with RotD, GMRotD, number of selected subsets points, threshold values, PGARotD (in g), PGVRotD (in cm/s), and PGDRotD (in cm)
 }
 \description{
 This function computes RotD with 180 rotated angles and Geometric Mean of RotD with 90 angles
-}
-\examples{
-GM_RotD_cal(c(0.01,0.03,...0.5), c(-0.01,0.02,...0.05), c(0.01,0.02,...10), 0.05, 0.005, 0.7)
 }
 \keyword{GM_RotD_cal}
