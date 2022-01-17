@@ -10,9 +10,9 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// ko_smooth
-NumericVector ko_smooth(NumericVector freq, NumericVector amp, float b, float rate);
-RcppExport SEXP _RCTC_ko_smooth(SEXP freqSEXP, SEXP ampSEXP, SEXP bSEXP, SEXP rateSEXP) {
+// KO_smooth
+NumericVector KO_smooth(NumericVector freq, NumericVector amp, float b, float rate);
+RcppExport SEXP _RCTC_KO_smooth(SEXP freqSEXP, SEXP ampSEXP, SEXP bSEXP, SEXP rateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +20,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type amp(ampSEXP);
     Rcpp::traits::input_parameter< float >::type b(bSEXP);
     Rcpp::traits::input_parameter< float >::type rate(rateSEXP);
-    rcpp_result_gen = Rcpp::wrap(ko_smooth(freq, amp, b, rate));
+    rcpp_result_gen = Rcpp::wrap(KO_smooth(freq, amp, b, rate));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -57,7 +57,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RCTC_ko_smooth", (DL_FUNC) &_RCTC_ko_smooth, 4},
+    {"_RCTC_KO_smooth", (DL_FUNC) &_RCTC_KO_smooth, 4},
     {"_RCTC_PS_cal_cpp", (DL_FUNC) &_RCTC_PS_cal_cpp, 5},
     {"_RCTC_subset_select", (DL_FUNC) &_RCTC_subset_select, 6},
     {NULL, NULL, 0}

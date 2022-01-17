@@ -58,9 +58,9 @@ AI_cal <- function(acc, dt) {
   return(pi / (2 * 9.81) * cumtrapz(x = seq(0, length(acc) - 1) * dt, y = acc^2))
 }
 
-#' A function to calculate significant duration
+#' A function to calculate times for significant duration
 #'
-#' This function computes significant duration based on Arias Intensity (AI)
+#' This function computes times for significant duration based on Arias Intensity (AI)
 #' @param acc The acceleration time series, in g
 #' @param dt The time step, in second
 #' @param percentiles The percentiles of normalized AI at which the time is calculated. Default is NA, the funcation will

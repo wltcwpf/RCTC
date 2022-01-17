@@ -2,7 +2,7 @@
 % Please edit documentation in R/RotD_cal_SigDur.R
 \name{AI_times}
 \alias{AI_times}
-\title{A function to calculate significant duration}
+\title{A function to calculate times for significant duration}
 \usage{
 AI_times(acc, dt, percentiles = NA)
 }
@@ -18,7 +18,7 @@ calculate the time for the default percentiles of normalized AI for seq(0.05, 0.
 An array of the time corresponds to each of the percentiles
 }
 \description{
-This function computes significant duration based on Arias Intensity (AI)
+This function computes times for significant duration based on Arias Intensity (AI)
 }
 \references{
 Bozorgnia, Y., and Campbell, K. W., (2004). Engineering characterization of ground motion,

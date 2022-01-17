@@ -31,7 +31,7 @@ FAS_cal <- function(acc, dt, unitary_normalization = FALSE, smooth_flag = FALSE,
   output$Phase <- phase
 
   if (smooth_flag) {
-    output$smoothed_FAS <- ko_smooth(freq = output$Freq, amp = output$FAS, b = smooth_bandwidth)
+    output$smoothed_FAS <- KO_smooth(freq = output$Freq, amp = output$FAS, b = smooth_bandwidth)
   }
 
   return(output)
@@ -65,7 +65,7 @@ EAS_cal <- function(data1, data2, dt, unitary_normalization = FALSE, smooth_flag
   output$EAS <- sqrt((output1$FAS^2 + output2$FAS^2) / 2)
 
   if (smooth_flag) {
-    output$smoothed_EAS <- ko_smooth(freq = output$Freq, amp = output$EAS, b = smooth_bandwidth)
+    output$smoothed_EAS <- KO_smooth(freq = output$Freq, amp = output$EAS, b = smooth_bandwidth)
   }
 
   return(output)

@@ -15,8 +15,8 @@
 #' @references Konno, K., Ohmachi, T. Ground-motion characteristics estimated from spectral ratio between horizontal and vertical components of microtremor.
 #' Bulletin of the Seismological Society of America. 1998.88 (1): 228-241.
 #' @export
-ko_smooth <- function(freq, amp, b = 20, rate = 2.5) {
-    .Call('_RCTC_ko_smooth', PACKAGE = 'RCTC', freq, amp, b, rate)
+KO_smooth <- function(freq, amp, b = 20, rate = 2.5) {
+    .Call('_RCTC_KO_smooth', PACKAGE = 'RCTC', freq, amp, b, rate)
 }
 
 #' Response computation

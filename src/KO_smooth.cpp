@@ -18,7 +18,7 @@ using namespace Rcpp;
 //' Bulletin of the Seismological Society of America. 1998.88 (1): 228-241.
 //' @export
 // [[Rcpp::export]]
-NumericVector ko_smooth(NumericVector freq, NumericVector amp, float b=20, float rate=2.5) {
+NumericVector KO_smooth(NumericVector freq, NumericVector amp, float b=20, float rate=2.5) {
 
   double fmul, fdiv, f1, f2, a1, a2, c1;
   int i, j;
