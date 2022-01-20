@@ -21,7 +21,7 @@ FAS_cal <- function(acc, dt, unitary_normalization = FALSE, smooth_flag = FALSE,
   fft_ts <- stats::fft(acc)
   if (unitary_normalization)
     fft_ts <- fft_ts / sqrt(nfft)
-  amp <- abs(fft_ts)[1:nNyq] * dt
+  amp <- abs(fft_ts)[1:nNyq]
   phase <- Arg(fft_ts)[1:nNyq]
   freq <- ((1:nNyq) - 1) * df
   output <- list()
