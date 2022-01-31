@@ -8,7 +8,7 @@ EAS_cal(
   data1,
   data2,
   dt,
-  unitary_normalization = FALSE,
+  normalization_factor = 0,
   smooth_flag = TRUE,
   smooth_bandwidth = 20
 )
@@ -20,8 +20,11 @@ EAS_cal(
 
 \item{dt}{Time step of two time series, in second. We assume that the two time series have the same time step.}
 
-\item{unitary_normalization}{An indicator specifies whether a 1/sqrt(N) unitary normalization factor is applied
-to Fourier transforms}
+\item{normalization_factor}{The indicator of normalization factor. 0 stands for no normalization;
+1 stands for normalized by time step -- integration over time;
+2 stands for normalized by 1/sqrt(N) -- unitary normalization;
+3 stands for normalzied by 1/N;
+4 stands for normalized by time step and 1/sqrt(N)}
 
 \item{smooth_flag}{An indicator specifies whether a Konno and Ohmachi (1998) smooth method is applied}
 

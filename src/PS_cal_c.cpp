@@ -9,7 +9,7 @@ using namespace Rcpp;
 //'
 //' @param data An acceleration time series array
 //' @param period_t An array of oscillator periods
-//' @param damping Damping ratio, expressed as a decimal (default value is 0.05)
+//' @param damping Damping ratio, expressed as a decimal
 //' @param time_dt Time step, in sec
 //' @param type_return A dummy variable controlling output type, set to either 1 or 2.
 //' If 1 is selected, it returns a two-row matrix with actual spectral acceleration

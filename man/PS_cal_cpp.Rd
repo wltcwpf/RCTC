@@ -11,7 +11,7 @@ PS_cal_cpp(data, period_t, damping, time_dt, type_return)
 
 \item{period_t}{An array of oscillator periods}
 
-\item{damping}{Damping ratio, expressed as a decimal (default value is 0.05)}
+\item{damping}{Damping ratio, expressed as a decimal}
 
 \item{time_dt}{Time step, in sec}
 
