@@ -73,3 +73,8 @@ report is cited:
 
 Please check out [wiki](https://github.com/wltcwpf/RCTC/wiki) for more
 detailed instructions!
+
+## Issues
+
+Please report any running issues or leave your comments on the
+[Issues](https://github.com/wltcwpf/RCTC/issues) page!
