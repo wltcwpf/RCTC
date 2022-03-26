@@ -87,8 +87,8 @@ GM_RotD_cal <- function(data1, data2, period_t, damping, time_dt, fraction = 0.7
   len_period <- length(period_t)
   Num_points <- seq(1,len_period)
   rd_alevel <- seq(1,len_period)
-  RD1 <- PS_cal_cpp(data1, period_t, damping, time_dt, 2) # matrix [period by data points]
-  RD2 <- PS_cal_cpp(data2, period_t, damping, time_dt, 2) # matrix [period by data points]
+  RD1 <- PS_cal_cpp(data1, period_t, damping, time_dt, 2) # matrix [period by data points], in cm
+  RD2 <- PS_cal_cpp(data2, period_t, damping, time_dt, 2) # matrix [period by data points], in cm
   omega = 2*pi/period_t
   for(per_index in seq(1,len_period)){
     length_min <- min(length(RD1[per_index,]), length(RD2[per_index,]))
@@ -99,11 +99,11 @@ GM_RotD_cal <- function(data1, data2, period_t, damping, time_dt, fraction = 0.7
     Rot_rd2 <- rd_subset[2,]
     rot_angle4rot <- seq(1,180)
     for(theta in seq(1,90)){
-      RS1 = Rot_rd1*cos(theta/180*pi) + Rot_rd2*sin(theta/180*pi)
-      RS2 = -Rot_rd1*sin(theta/180*pi) + Rot_rd2*cos(theta/180*pi)
-      RotD180[theta, per_index] = max(abs(RS1))*omega[per_index]^2
-      RotD180[theta+90, per_index] = max(abs(RS2))*omega[per_index]^2
-      GMRotD[theta,per_index] = sqrt(max(abs(RS1))*max(abs(RS2)))*omega[per_index]^2
+      RS1 = Rot_rd1*cos(theta/180*pi) + Rot_rd2*sin(theta/180*pi)  # in cm
+      RS2 = -Rot_rd1*sin(theta/180*pi) + Rot_rd2*cos(theta/180*pi)  # in cm
+      RotD180[theta, per_index] = max(abs(RS1))*omega[per_index]^2 / 981 # convert to g
+      RotD180[theta+90, per_index] = max(abs(RS2))*omega[per_index]^2 / 981  # convert to g
+      GMRotD[theta,per_index] = sqrt(max(abs(RS1))*max(abs(RS2)))*omega[per_index]^2 / 981 # convert to g
     }
   }
 

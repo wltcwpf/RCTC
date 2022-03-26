@@ -7,7 +7,7 @@
 PS_cal_cpp(data, period_t, damping, time_dt, type_return)
 }
 \arguments{
-\item{data}{An acceleration time series array}
+\item{data}{An acceleration time series array (in g)}
 
 \item{period_t}{An array of oscillator periods}
 
@@ -16,12 +16,15 @@ PS_cal_cpp(data, period_t, damping, time_dt, type_return)
 \item{time_dt}{Time step, in sec}
 
 \item{type_return}{A dummy variable controlling output type, set to either 1 or 2.
-If 1 is selected, it returns a two-row matrix with actual spectral acceleration
-in the first row and PSA in the second row at each of the specified periods in \code{period_t}. If 2 is selected,
-it returns a row vector of spectral displacements}
+If 1 is selected, it returns a four-row matrix with actual spectral acceleration (in g)
+in the first row, PSA (in g) in the second row, PSV (cm/s) in the third row, and
+spectral displacement (cm) in the fourth row at each of the specified periods in \code{period_t}.
+If 2 is selected, it returns a matrix with response displacement (cm)
+(number of periods in \code{period_t} by data points)}
 }
 \value{
-The response acceleration and PSA, or spectral displacement. It depends on \code{type_return}.
+The response acceleration and PSA, or spectral velocity and spectral displacement.
+It depends on \code{type_return}.
 }
 \description{
 Compute response acceleration, pseudo-spectral acceleration (PSA), and spectral displacement

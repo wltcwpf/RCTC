@@ -7,15 +7,18 @@ using namespace Rcpp;
 //'
 //' Compute response acceleration, pseudo-spectral acceleration (PSA), and spectral displacement
 //'
-//' @param data An acceleration time series array
+//' @param data An acceleration time series array (in g)
 //' @param period_t An array of oscillator periods
 //' @param damping Damping ratio, expressed as a decimal
 //' @param time_dt Time step, in sec
 //' @param type_return A dummy variable controlling output type, set to either 1 or 2.
-//' If 1 is selected, it returns a two-row matrix with actual spectral acceleration
-//' in the first row and PSA in the second row at each of the specified periods in \code{period_t}. If 2 is selected,
-//' it returns a row vector of spectral displacements
-//' @return The response acceleration and PSA, or spectral displacement. It depends on \code{type_return}.
+//' If 1 is selected, it returns a four-row matrix with actual spectral acceleration (in g)
+//' in the first row, PSA (in g) in the second row, PSV (cm/s) in the third row, and
+//' spectral displacement (cm) in the fourth row at each of the specified periods in \code{period_t}.
+//' If 2 is selected, it returns a matrix with response displacement (cm)
+//' (number of periods in \code{period_t} by data points)
+//' @return The response acceleration and PSA, or spectral velocity and spectral displacement.
+//' It depends on \code{type_return}.
 //' @export
 // [[Rcpp::export]]
 
@@ -28,6 +31,8 @@ Rcpp::NumericMatrix PS_cal_cpp(Rcpp::NumericVector data, Rcpp::NumericVector per
   Rcpp::NumericMatrix PS_vel(len_per,len_data);
   Rcpp::NumericVector ACC(len_per);
   Rcpp::NumericVector PSA(len_per);
+  Rcpp::NumericVector PSV(len_per);
+  Rcpp::NumericVector SD(len_per);
   for(int i=0; i<len_per; i++){
     PS_disp(i,0) = 0;
     PS_vel(i,0) = 0;
@@ -57,23 +62,33 @@ Rcpp::NumericMatrix PS_cal_cpp(Rcpp::NumericVector data, Rcpp::NumericVector per
         max = fabs(PS_disp(i,n));
       }
     }
+    SD[i] = max*981;
+    PSV[i] = omega_n*max*981;
     PSA[i] = pow(omega_n,2)*max;
   }
-  Rcpp::NumericMatrix result(2, PSA.size());
+  Rcpp::NumericMatrix result(4, PSA.size());
   for(int j=0;j<PSA.size();j++){
-    for(int i=0;i<2;i++){
+    for(int i=0;i<4;i++){
       if(i==0){
         result(i,j)=ACC[j];
-      } else{
+      } else if (i==1){
         result(i,j)=PSA[j];
+      } else if (i==2){
+        result(i,j)=PSV[j];
+      } else {
+        result(i,j)=SD[j];
       }
     }
   }
   if(type_return == 1){
     return result;
   } else {
+    for(int i=0; i<len_per; i++){
+      for (int j=1; j<len_data; j++){
+        PS_disp(i,j) = PS_disp(i,j)*981;
+      }
+    }
     return PS_disp;
   }
 }
-
 

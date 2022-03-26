@@ -23,15 +23,18 @@ KO_smooth <- function(freq, amp, b = 20, rate = 2.5) {
 #'
 #' Compute response acceleration, pseudo-spectral acceleration (PSA), and spectral displacement
 #'
-#' @param data An acceleration time series array
+#' @param data An acceleration time series array (in g)
 #' @param period_t An array of oscillator periods
 #' @param damping Damping ratio, expressed as a decimal
 #' @param time_dt Time step, in sec
 #' @param type_return A dummy variable controlling output type, set to either 1 or 2.
-#' If 1 is selected, it returns a two-row matrix with actual spectral acceleration
-#' in the first row and PSA in the second row at each of the specified periods in \code{period_t}. If 2 is selected,
-#' it returns a row vector of spectral displacements
-#' @return The response acceleration and PSA, or spectral displacement. It depends on \code{type_return}.
+#' If 1 is selected, it returns a four-row matrix with actual spectral acceleration (in g)
+#' in the first row, PSA (in g) in the second row, PSV (cm/s) in the third row, and
+#' spectral displacement (cm) in the fourth row at each of the specified periods in \code{period_t}.
+#' If 2 is selected, it returns a matrix with response displacement (cm)
+#' (number of periods in \code{period_t} by data points)
+#' @return The response acceleration and PSA, or spectral velocity and spectral displacement.
+#' It depends on \code{type_return}.
 #' @export
 PS_cal_cpp <- function(data, period_t, damping, time_dt, type_return) {
     .Call('_RCTC_PS_cal_cpp', PACKAGE = 'RCTC', data, period_t, damping, time_dt, type_return)

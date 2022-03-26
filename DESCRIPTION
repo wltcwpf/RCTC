@@ -1,7 +1,7 @@
 Package: RCTC
 Type: Package
 Title: The Rotated Combination of Two-Component Ground Motions
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: person("Pengfei", "Wang", email = "wltcwpf@gmail.com", role = c("aut", "cre"))
 URL: https://github.com/wltcwpf/RCTC
 BugReports: https://github.com/wltcwpf/RCTC/issues
