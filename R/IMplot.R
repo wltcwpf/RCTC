@@ -851,7 +851,7 @@ main_proc <- function(data1, data2, period_t, damping, dt, fraction, Interpolati
   axis(1, at = atx, labels = atx, cex.axis = 2, cex.lab = 2)
   lines(period_t, PSA_1, lty = 2, lwd = 2, col = "red")
   lines(period_t, PSA_2, lty = 3, lwd = 2, col = "blue")
-  legend(5,max(max(PSA1,PSA2)), c("PSA_H1","PSA_H2"), lty=c(2,3), lwd=c(2,2),col=c("red","blue"), cex = 2)
+  legend(5,max(c(PSA_1,PSA_2)), c("PSA_H1","PSA_H2"), lty=c(2,3), lwd=c(2,2),col=c("red","blue"), cex = 2)
   dev.off()
   png(filename = paste0(outputplotdir, '/', paste(flname,"_GMRotI50.png", sep = "")), width = 1280, height = 768)
   par(oma=c(2,2,2,2))
