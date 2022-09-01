@@ -248,9 +248,7 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
         tmp_res <- main_proc(data1 = data1, data2 = data2, period_t = period_t, damping = damping, dt = dt1,
                              fraction = fraction, Interpolation_factor = Interpolation_factor, tmax4penalty = tmax4penalty_in,
                              tmin4penalty = tmin4penalty_in, outputdatadir = outputdatadir, outputplotdir = outputplotdir,
-                             combine_index = combine_index, ang1 = ang1,
-                             lowest_usable_freq = lowest_usable_freq, highest_usable_freq = highest_usable_freq,
-                             flname = temp_name1[[1]][1], period_names = period_names)
+                             combine_index = combine_index, ang1 = ang1, flname = temp_name1[[1]][1], period_names = period_names)
 
         pga_combine[i] <- tmp_res$pga_rotxx
         pgv_combine[i] <- tmp_res$pgv_rotxx
@@ -321,7 +319,6 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
                              fraction = fraction, Interpolation_factor = Interpolation_factor, tmax4penalty = tmax4penalty_in,
                              tmin4penalty = tmin4penalty_in, outputdatadir = outputdatadir, outputplotdir = outputplotdir,
                              combine_index = combine_index, ang1 = ang1,
-                             lowest_usable_freq = lowest_usable_freq, highest_usable_freq = highest_usable_freq,
                              flname = temp_name1[[1]][1], period_names = period_names)
 
         pga_combine[i] <- tmp_res$pga_rotxx
@@ -409,7 +406,6 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
                            fraction = fraction, Interpolation_factor = Interpolation_factor, tmax4penalty = tmax4penalty_in,
                            tmin4penalty = tmin4penalty_in, outputdatadir = outputdatadir, outputplotdir = outputplotdir,
                            combine_index = combine_index, ang1 = ang1,
-                           lowest_usable_freq = lowest_usable_freq, highest_usable_freq = highest_usable_freq,
                            flname = station_name, period_names = period_names)
 
       pga_combine[i] <- tmp_res$pga_rotxx
@@ -504,7 +500,6 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
                              fraction = fraction, Interpolation_factor = Interpolation_factor, tmax4penalty = tmax4penalty_in,
                              tmin4penalty = tmin4penalty_in, outputdatadir = outputdatadir, outputplotdir = outputplotdir,
                              combine_index = combine_index, ang1 = ang1,
-                             lowest_usable_freq = lowest_usable_freq, highest_usable_freq = highest_usable_freq,
                              flname = station_name, period_names = period_names)
 
         pga_combine[i] <- tmp_res$pga_rotxx
@@ -573,7 +568,6 @@ IMplot <- function(inputpath='/Users/PFW/Desktop/test/Inputdata', datatype = "ng
                              fraction = fraction, Interpolation_factor = Interpolation_factor, tmax4penalty = tmax4penalty_in,
                              tmin4penalty = tmin4penalty_in, outputdatadir = outputdatadir, outputplotdir = outputplotdir,
                              combine_index = combine_index, ang1 = ang1,
-                             lowest_usable_freq = lowest_usable_freq, highest_usable_freq = highest_usable_freq,
                              flname = station_name, period_names = period_names)
 
         pga_combine[i] <- tmp_res$pga_rotxx
