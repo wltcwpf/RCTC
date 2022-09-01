@@ -30,13 +30,10 @@ nametransfer <- function(filedir1, filedir2, stationname, sn=1, outputdir){
   if(filedir2 != 'null'){
     newname1 <- paste(stationname, sn, "H1", sep = "_")
     newname2 <- paste(stationname, sn, "H2", sep = "_")
-    file.copy(filedir1, outputdir)
-    file.rename(file.path(outputdir, oldname1), file.path(outputdir, newname1))
-    file.copy(filedir2, outputdir)
-    file.rename(file.path(outputdir, oldname2), file.path(outputdir, newname2))
+    file.copy(filedir1, paste0(outputdir, '/', newname1))
+    file.copy(filedir2, paste0(outputdir, '/', newname2))
   } else{
     newname1 <- paste(stationname, sn, "H12", sep = "_")
-    file.copy(filedir1, outputdir)
-    file.rename(file.path(outputdir, oldname1), file.path(outputdir, newname1))
+    file.copy(filedir1, paste0(outputdir, '/', newname1))
   }
 }
