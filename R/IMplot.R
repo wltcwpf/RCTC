@@ -655,7 +655,7 @@ penalty_fun <- function(tmax4penalty, tmin4penalty, f_lowest, f_highest, period_
 
 ########### main process function ############
 main_proc <- function(data1, data2, period_t, damping, dt, fraction, Interpolation_factor, tmax4penalty, tmin4penalty, outputdatadir,
-                      outputplotdir, combine_index, ang1, lowest_usable_freq, highest_usable_freq, flname, period_names) {
+                      outputplotdir, combine_index, ang1, lowest_usable_freq = NA, highest_usable_freq = NA, flname, period_names) {
   ## main process function
 
   # Applying GMRotD_cal function to get PGA/PGV/PGD and PSA for different periods for each rotated angle,
@@ -816,7 +816,17 @@ main_proc <- function(data1, data2, period_t, damping, dt, fraction, Interpolati
   if(pgd_rot100ang > 360) {pgd_rot100ang <- pgd_rot100ang - 360}
   if(pgd_rot100ang < 0) {pgd_rot100ang <- pgd_rot100ang + 360}
 
-  Value <- c(npts1, npts2, tmax4penalty, tmin4penalty,damping, lowest_usable_freq, highest_usable_freq,
+  Value <- c(npts1, npts2, tmax4penalty, tmin4penalty, damping)
+
+  ifelse(!is.na(lowest_usable_freq),
+         Value <- c(Value, 1/tmax4penalty),
+         Value <- c(Value, lowest_usable_freq))
+
+  ifelse(!is.na(highest_usable_freq),
+         Value <- c(Value, 1/tmin4penalty),
+         Value <- c(Value, highest_usable_freq))
+
+  Value <- c(Value,
              GMRotI50_ang, pga_gmrotI50, pgv_gmrotI50, pgd_gmrotI50, pga_gmrot50,
              pgv_gmrot50, pga_gmrot100ang, pga_gmrot100, pgv_gmrot100ang, pgv_gmrot100,
              pga_1_ar, pga_2_ar, pgv_1_ar, pgv_2_ar, pgd_1_ar,
