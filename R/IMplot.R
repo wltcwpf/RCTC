@@ -812,11 +812,11 @@ main_proc <- function(data1, data2, period_t, damping, dt, fraction, Interpolati
 
   Value <- c(npts1, npts2, tmax4penalty, tmin4penalty, damping)
 
-  ifelse(!is.na(lowest_usable_freq),
+  ifelse(is.na(lowest_usable_freq),
          Value <- c(Value, 1/tmax4penalty),
          Value <- c(Value, lowest_usable_freq))
 
-  ifelse(!is.na(highest_usable_freq),
+  ifelse(is.na(highest_usable_freq),
          Value <- c(Value, 1/tmin4penalty),
          Value <- c(Value, highest_usable_freq))
 
@@ -838,7 +838,7 @@ main_proc <- function(data1, data2, period_t, damping, dt, fraction, Interpolati
   png(filename = paste0(outputplotdir, '/', paste(flname,"_PSA.png", sep = "")), width = 1280, height = 768)
   par(oma=c(2,2,2,2))
   par(mar=c(5,5,4,2) + 0.1)
-  plot(c(0.01,20), c(0,max(max(PSA1,PSA2))), log = "x", type = "n", xlab = "Period(s)", ylab = "PSA(g)",
+  plot(c(0.01,20), c(0,max(c(PSA_1,PSA_2))), log = "x", type = "n", xlab = "Period(s)", ylab = "PSA(g)",
        main = "PSA versus Period", cex.main=2, cex.lab=2, cex.axis=2, xaxt = 'n')
   x_range <- c(0.01,20)
   x_range_log10 <- c(ceiling(log10(x_range[1])), floor(log10(x_range[2])))
