@@ -63,7 +63,7 @@ GM_RotD_cal <- function(data1, data2, period_t, damping, time_dt, fraction = 0.7
     # if time_dt even smaller than the diresed time step (not common), we do not interpolate
     interp_factor <- max(interp_factor, 0)
     interp_factor <- 2^interp_factor
-  }else if(log(Interpolation_factor)%%log(2) != 0){
+  }else if(Interpolation_factor %% 2 != 0){
     print("The Interpolation factor is not a number of power of 2, please try correct it!")
     stop()
   }else{
