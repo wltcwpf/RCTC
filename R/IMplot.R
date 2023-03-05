@@ -731,7 +731,8 @@ main_proc <- function(data1, data2, period_t, damping, dt, fraction, Interpolati
     interp_factor <- min(ceiling(log(dt/0.001)/log(2)), 3)
     interp_factor <- max(interp_factor, 0)
     interp_factor <- 2^interp_factor
-  }else if(log(Interpolation_factor)%%log(2) != 0){
+  # }else if(log(Interpolation_factor)%%log(2) != 0){
+  }else if(sum(as.numeric(intToBits(Interpolation_factor))) != 1){
     print("The Interpolation factor is not a number of power of 2, please try correct it!")
     stop()
   }else{

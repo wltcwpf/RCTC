@@ -16,14 +16,10 @@ Issues!](https://img.shields.io/badge/Report%20Issues-Here-1abc9c.svg)](https://
 Yes!](https://img.shields.io/badge/Open%20Source-Yes-green.svg)](https://github.com/wltcwpf/RCTC)
 <!-- badges: end -->
 
-The package was initially developed for Rotated Combination of
-Two-Component (RCTC) Ground Motions calculation. Please refer to the
-[PEER
+The package was developed for Rotated Combination of Two-Component
+(RCTC) Ground Motions calculation. Please refer to the [PEER
 report](https://peer.berkeley.edu/sites/default/files/2017_09_stewart_9.10.18.pdf)
-for some detail. Now the package has been expanded to include a few more
-widely used intensity measures, which are Arias Intensity and
-significant duration, (standardized) Cumulative Absolute Velocity (CAV),
-and (effective) Fourier Amplitude Spectra (FAS / EAS).
+for some detail.
 
 ## Installation
 
